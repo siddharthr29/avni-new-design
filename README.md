@@ -192,10 +192,19 @@ export default function NewPage() {
 }
 ```
 
+## 📝 Content Management Guide
+
 ### Adding a Blog Post
 
-1. Create a new `.md` file in `content/blog/`
-2. Add frontmatter:
+Blog posts are stored as Markdown files in `/content/blog/`. Follow these steps:
+
+**1. Create a new Markdown file:**
+```bash
+# File naming convention: YYYY-MM-DD-post-title.md
+content/blog/2025-11-05-my-new-post.md
+```
+
+**2. Add frontmatter (metadata) at the top:**
 
 ```markdown
 ---
@@ -205,11 +214,115 @@ author: "Author Name"
 description: "Post description"
 tags: ["tag1", "tag2"]
 featuredimage: "/images/blog/post-image.jpg"
-featured: false
+featured: false  # Set to true for featured posts (shows badge)
 ---
 
-Your content here...
+Your content here in Markdown format...
+
+## Headings work
+
+- Bullet points
+- Work too
+
+**Bold text** and *italic text*
 ```
+
+**3. Write your content in Markdown**
+
+**4. Add images (optional):**
+- Place images in `/public/images/blog/`
+- Reference in markdown: `![Alt text](/images/blog/image.jpg)`
+
+**5. Make a post featured:**
+- Set `featured: true` in frontmatter
+- Featured posts show a "⭐ FEATURED" badge
+- Launchpad post gets animated gradient border
+
+**6. Test locally:**
+```bash
+npm run dev
+# Visit http://localhost:3000/blog
+```
+
+### Adding a Case Study
+
+Case studies are defined in `/app/case-studies/[slug]/page.tsx`. To add a new one:
+
+**1. Open the file:**
+```bash
+app/case-studies/[slug]/page.tsx
+```
+
+**2. Add to `caseStudiesData` object:**
+```typescript
+const caseStudiesData: Record<string, any> = {
+  'your-case-study-slug': {
+    title: 'Case Study Title',
+    organization: 'Organization Name',
+    sector: 'Health & Nutrition',  // or Education, Agriculture, etc.
+    location: 'Location, Country',
+    beneficiaries: '50,000+',
+    impact: '30% improvement in tracking',
+    date: '2025-01-15',
+    content: `
+## Challenge
+Describe the problem...
+
+## Solution
+How Avni helped...
+
+## Results
+- Result 1
+- Result 2
+    `,
+  },
+  // ... other case studies
+};
+```
+
+**3. Add featured image (optional):**
+- Place in `/public/images/case-studies/`
+- Reference in content: `![Image](/images/case-studies/image.jpg)`
+
+**4. Test the case study:**
+```bash
+npm run dev
+# Visit http://localhost:3000/case-studies/your-case-study-slug
+```
+
+### Managing Featured Content
+
+**Featured Blog Posts:**
+- Set `featured: true` in blog post frontmatter
+- Appears with star badge on blog listing
+- Shows in "Latest from Avni" section on homepage
+
+**Featured Case Studies:**
+- Currently displayed in order defined in code
+- First 3 shown on homepage
+- All visible on `/case-studies` page
+
+**Homepage "Latest from Avni":**
+- Automatically shows latest 3 blog posts
+- Sorted by date (newest first)
+- Launchpad post gets special animated border
+
+### Content Best Practices
+
+**Blog Posts:**
+- ✅ Use descriptive titles (60 chars max for SEO)
+- ✅ Add meta description (150-160 chars)
+- ✅ Include featured image (1200x630px recommended)
+- ✅ Use relevant tags for categorization
+- ✅ Write in Markdown for easy formatting
+- ✅ Add alt text to images for accessibility
+
+**Case Studies:**
+- ✅ Include quantifiable results
+- ✅ Use clear section headings
+- ✅ Add organization logo/photo
+- ✅ Highlight specific impact metrics
+- ✅ Keep content scannable with bullet points
 
 ### Styling Guidelines
 
