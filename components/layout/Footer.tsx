@@ -159,7 +159,11 @@ export default function Footer() {
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
-                <span>Bangalore, India</span>
+                <span>
+                  147, 1st Floor, 10th Cross Rd, Binnamangala,<br />
+                  Hoysala Nagar, Indiranagar,<br />
+                  Bengaluru, Karnataka 560038
+                </span>
               </div>
             </div>
           </div>

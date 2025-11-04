@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, MapPin, Users, TrendingUp, Calendar } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { marked } from 'marked';
+import ShareButtons from '@/components/ShareButtons';
 
 // This would typically come from a database or CMS
 const caseStudiesData: Record<string, any> = {
@@ -150,8 +151,15 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               dangerouslySetInnerHTML={{ __html: marked(study.content) }} 
             />
 
+            {/* Share Buttons */}
+            <ShareButtons 
+              title={study.title}
+              url={`/case-studies/${slug}`}
+              description={`${study.organization} - ${study.impact}`}
+            />
+
             {/* CTA */}
-            <div className="mt-16 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 md:p-12 text-center">
+            <div className="mt-8 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 md:p-12 text-center">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Ready to Transform Your Operations?
               </h2>

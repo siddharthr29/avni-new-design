@@ -21,7 +21,23 @@ interface LatestContentProps {
 export default function LatestContent({ posts }: LatestContentProps) {
   const latestPosts = posts.slice(0, 3);
   return (
-    <section className="section bg-neutral-50">
+    <>
+      <style jsx global>{`
+        @keyframes border-pulse {
+          0%, 100% {
+            background: linear-gradient(white, white) padding-box, 
+                        linear-gradient(45deg, #14B8A6, #F59E0B, #14B8A6) border-box;
+          }
+          50% {
+            background: linear-gradient(white, white) padding-box, 
+                        linear-gradient(225deg, #F59E0B, #14B8A6, #F59E0B) border-box;
+          }
+        }
+        .animate-border-pulse {
+          animation: border-pulse 3s ease-in-out infinite;
+        }
+      `}</style>
+      <section className="section bg-neutral-50">
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="section-heading">Latest from Avni</h2>
@@ -35,7 +51,13 @@ export default function LatestContent({ posts }: LatestContentProps) {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className={`group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${
+                post.slug.includes('launchpad') ? 'relative animate-border-pulse' : ''
+              }`}
+              style={post.slug.includes('launchpad') ? {
+                background: 'linear-gradient(white, white) padding-box, linear-gradient(45deg, #14B8A6, #F59E0B, #14B8A6) border-box',
+                border: '3px solid transparent',
+              } : undefined}
             >
               {/* Featured Image or Logo */}
               <div className="aspect-video bg-gradient-to-br from-primary-100 to-secondary-100 flex items-center justify-center relative overflow-hidden">
@@ -97,5 +119,6 @@ export default function LatestContent({ posts }: LatestContentProps) {
         </div>
       </div>
     </section>
+    </>
   );
 }

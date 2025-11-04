@@ -4,6 +4,7 @@ import { Calendar, User, ArrowLeft, Tag } from 'lucide-react';
 import { getBlogPost, getAllBlogPosts } from '@/lib/blog';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import LaunchpadCTA from '@/components/LaunchpadCTA';
+import ShareButtons from '@/components/ShareButtons';
 import type { Metadata } from 'next';
 
 interface BlogPostPageProps {
@@ -159,6 +160,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             
             {/* Show Launchpad CTA if it's the launchpad post */}
             {slug.includes('launchpad') && <LaunchpadCTA />}
+            
+            {/* Share Buttons */}
+            <ShareButtons 
+              title={post.title}
+              url={`/blog/${slug}`}
+              description={post.description}
+            />
           </div>
         </div>
       </section>

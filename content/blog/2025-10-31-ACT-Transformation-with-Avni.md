@@ -4,18 +4,11 @@ title: Reflecting on Our Digital Journey in the last 1 year - How Avni Helped Us
 date: 2025-10-31T20:30:00.000Z
 author: Nivedita Desai, – Managing Trustee Animedh Charitable Trust (ACT)
 featuredpost: false
-description: 
+description: How Animedh Charitable Trust transformed their field data management from paper forms to digital with Avni, improving efficiency and decision-making.
 featuredimage: /images/2025-ACT-Transformation-with-Avni/ACT_team.png
 tags:
     - User stories
     - Health
----
----
-
-<div style="width: 80%; margin: auto; ">
-    <img src="/images/2025-ACT-Transformation-with-Avni/ACT_team.png">
-</div>
-
 ---
 
 At [Animedh Charitable Trust (ACT)](https://animedhtrust.org/) our mission is to empower underserved communities through education, health, and livelihood programmes. As our work expanded, we realised our data systems needed to evolve too.
