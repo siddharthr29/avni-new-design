@@ -31,6 +31,31 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  // Redirects handled by Next.js (not Netlify)
+  async redirects() {
+    return [
+      {
+        source: '/launchpad',
+        destination: '/blog/2025-10-30-avni-launchpad-announcement',
+        permanent: true,
+      },
+      {
+        source: '/signup',
+        destination: '/contact',
+        permanent: false,
+      },
+      {
+        source: '/terms',
+        destination: '/privacy',
+        permanent: true,
+      },
+      {
+        source: '/support',
+        destination: '/contact',
+        permanent: true,
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig

@@ -2,40 +2,12 @@
   command = "npm run build"
   publish = ".next"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
 [build.environment]
   NODE_VERSION = "20.10.0"
   NPM_FLAGS = "--legacy-peer-deps"
 
-# Redirects for clean URLs and broken links
-[[redirects]]
-  from = "/launchpad"
-  to = "/blog/2025-10-30-avni-launchpad-announcement"
-  status = 301
-
-[[redirects]]
-  from = "/signup"
-  to = "/contact"
-  status = 302
-
-[[redirects]]
-  from = "/terms"
-  to = "/privacy"
-  status = 301
-
-[[redirects]]
-  from = "/support"
-  to = "/contact"
-  status = 301
-
-# Trailing slash handling
-[[redirects]]
-  from = "/*/"
-  to = "/:splat"
-  status = 301
-  force = false
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 # Headers for security and performance
 [[headers]]
