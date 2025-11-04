@@ -79,15 +79,27 @@ export default function Hero() {
                 alt="Avni Platform"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-6">
+              {/* Watch Demo Button - Prominent with animated border */}
+              <div className="absolute inset-0 flex items-center justify-center">
                 <a
                   href="https://www.youtube.com/watch?v=Xt9EUNXKfWI"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-white/90 hover:bg-white px-4 py-2 rounded-lg transition-colors"
+                  className="relative group"
                 >
-                  <Play className="h-5 w-5 text-primary-600" />
-                  <span className="font-semibold text-neutral-900">Watch Demo</span>
+                  {/* Animated border effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-xy"></div>
+                  
+                  {/* Button content */}
+                  <div className="relative flex items-center gap-3 bg-white px-8 py-4 rounded-xl shadow-2xl transform group-hover:scale-105 transition-all duration-200">
+                    <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-full group-hover:animate-pulse">
+                      <Play className="h-6 w-6 text-white fill-white ml-1" />
+                    </div>
+                    <div className="text-left">
+                      <div className="font-bold text-lg text-neutral-900">Watch Demo</div>
+                      <div className="text-xs text-neutral-600">See Avni in action</div>
+                    </div>
+                  </div>
                 </a>
               </div>
             </div>
