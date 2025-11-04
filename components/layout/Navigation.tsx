@@ -8,7 +8,7 @@ const navItems = [
   { name: 'Features', href: '/features' },
   { name: 'Solutions', href: '/solutions' },
   { name: 'Pricing', href: '/pricing' },
-  { name: 'Case Studies', href: '/case-studies' },
+  { name: 'Blog', href: '/blog' },
   { 
     name: 'Company', 
     href: '#',
@@ -21,9 +21,9 @@ const navItems = [
   },
   { 
     name: 'Resources', 
-    href: '/blog', 
+    href: '#', 
     submenu: [
-      { name: 'Blog', href: '/blog' },
+      { name: 'Case Studies', href: '/case-studies' },
       { name: 'Documentation', href: 'https://avni.readme.io', external: true },
       { name: 'FAQs', href: '/faqs' },
     ]
