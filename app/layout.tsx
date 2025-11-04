@@ -5,38 +5,38 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import LaunchpadBanner from "@/components/LaunchpadBanner";
 import WhatsAppChat from "@/components/WhatsAppChat";
+import AnalyticsProvider from "@/components/AnalyticsProvider";
+import { SEO_CONFIG } from "@/lib/analytics-config";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Avni - Open Source Data Collection & Insights Platform",
-  description: "Open-source AI-powered Offline-capable Data collection and Reporting platform for Non-profits. Built by non-profits, for non-profits.",
-  keywords: [
-    "field data collection", 
-    "NGO software", 
-    "offline data collection", 
-    "open source", 
-    "non-profit technology",
-    "offline-first",
-    "AI powered",
-    "human centered design",
-    "setup in minutes",
-    "built on ground realities"
-  ],
-  authors: [{ name: "Avni Project" }],
+  title: SEO_CONFIG.defaultTitle,
+  description: SEO_CONFIG.defaultDescription,
+  keywords: SEO_CONFIG.keywords,
+  authors: [{ name: SEO_CONFIG.organizationName }],
   openGraph: {
-    title: "Avni - Field Service and Data Collection Platform",
-    description: "Open-source AI-powered platform for NGOs and non-profits",
-    url: "https://avniproject.org",
-    siteName: "Avni Project",
+    title: SEO_CONFIG.defaultTitle,
+    description: SEO_CONFIG.defaultDescription,
+    url: SEO_CONFIG.siteUrl,
+    siteName: SEO_CONFIG.siteName,
     locale: "en_US",
-    type: "website",
+    type: SEO_CONFIG.ogType as any,
+    images: [
+      {
+        url: SEO_CONFIG.ogImage,
+        width: 1200,
+        height: 630,
+        alt: SEO_CONFIG.siteName,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Avni - Field Service Platform",
-    description: "Open-source data collection platform for non-profits",
-    site: "@avniproject",
+    title: SEO_CONFIG.defaultTitle,
+    description: SEO_CONFIG.defaultDescription,
+    site: SEO_CONFIG.twitterHandle,
+    images: [SEO_CONFIG.ogImage],
   },
   robots: {
     index: true,
@@ -61,6 +61,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <AnalyticsProvider />
+      </head>
       <body className={inter.className}>
         <LaunchpadBanner />
         <Navigation />
