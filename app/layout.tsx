@@ -6,9 +6,15 @@ import Footer from "@/components/layout/Footer";
 import LaunchpadBanner from "@/components/LaunchpadBanner";
 import WhatsAppChat from "@/components/WhatsAppChat";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
+import PageTransition from "@/components/PageTransition";
 import { SEO_CONFIG } from "@/lib/analytics-config";
+import { generateOrganizationSchema, generateSoftwareSchema } from "@/lib/seo";
 
 const inter = Inter({ subsets: ["latin"] });
+
+// Force static export for all pages
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 export const metadata: Metadata = {
   title: SEO_CONFIG.defaultTitle,
@@ -59,12 +65,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = generateOrganizationSchema();
+  const softwareSchema = generateSoftwareSchema();
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
         <AnalyticsProvider />
+        {/* Organization JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        {/* Software Application JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        />
       </head>
       <body className={inter.className}>
+        <PageTransition />
         <LaunchpadBanner />
         <Navigation />
         <main className="min-h-screen">

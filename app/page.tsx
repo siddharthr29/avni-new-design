@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Hero from "@/components/sections/Hero";
 import Testimonials from "@/components/sections/Testimonials";
 import ValuePropositions from "@/components/sections/ValuePropositions";
@@ -12,13 +13,37 @@ import PricingTeaser from "@/components/sections/PricingTeaser";
 import LatestContent from "@/components/sections/LatestContent";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { getAllBlogPosts } from "@/lib/blog";
+import { buildPageMetadata, generateBreadcrumbSchema } from "@/lib/seo";
+import { SEO_CONFIG } from "@/lib/analytics-config";
+
+// Force static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
+
+// Generate metadata for homepage
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    title: SEO_CONFIG.defaultTitle,
+    description: SEO_CONFIG.defaultDescription,
+    path: '/',
+    keywords: SEO_CONFIG.keywords,
+  });
+}
 
 export default function Home() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+  ]);
   // Fetch blog posts on the server
   const allPosts = getAllBlogPosts();
   
   return (
     <>
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Hero />
       <Testimonials />
       <ValuePropositions />

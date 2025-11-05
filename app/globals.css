@@ -96,6 +96,32 @@
     background-size: 400% 400%;
     animation: gradient-xy 3s ease infinite;
   }
+  
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .animate-fade-out {
+    animation: fade-out 0.4s ease-out forwards;
+  }
+  
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce-slow 0.6s ease-in-out infinite;
+  }
 }
 
 /* Custom scrollbar */
