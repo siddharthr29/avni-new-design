@@ -1,11 +1,28 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Users, MapPin, TrendingUp } from 'lucide-react';
+import { buildPageMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Case Studies | Real Impact Stories from Avni Users',
-  description: 'See how NGOs across India are using Avni to transform their field operations and create social impact.',
-};
+// Force static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
+
+// Generate metadata
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    title: 'Case Studies - Real NGO Success Stories with Avni | Field Data Impact',
+    description: 'See how 50+ NGOs across India use Avni to transform field operations. Real impact stories: health, education, agriculture, WASH programs. Proven results.',
+    path: '/case-studies',
+    keywords: [
+      'NGO case studies',
+      'field data success stories',
+      'nonprofit impact stories',
+      'Avni success stories',
+      'digital transformation case studies',
+      'social impact technology',
+    ],
+  });
+}
 
 const caseStudies = [
   {
@@ -109,8 +126,18 @@ const caseStudies = [
 const sectors = ['All', 'Health', 'Education', 'Water', 'Community Development', 'Social Security', 'Sports'];
 
 export default function CaseStudiesPage() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Case Studies', url: '/case-studies' },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24">
         <div className="container">
