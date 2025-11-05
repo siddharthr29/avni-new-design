@@ -230,13 +230,13 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <div 
               className="prose prose-lg max-w-none
                 prose-headings:font-bold prose-headings:text-neutral-900
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-primary-600
-                prose-p:text-neutral-700 prose-p:leading-relaxed prose-p:mb-6
-                prose-ul:my-6 prose-li:text-neutral-700
-                prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
-                prose-strong:text-neutral-900 prose-strong:font-semibold
-                prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-neutral-700"
+                prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:text-left
+                prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-5 prose-h3:text-primary-600 prose-h3:font-semibold
+                prose-p:text-neutral-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
+                prose-ul:my-8 prose-ul:space-y-3 prose-li:text-neutral-700 prose-li:leading-relaxed
+                prose-ol:my-8 prose-ol:space-y-4 prose-ol:list-decimal prose-ol:pl-6
+                prose-strong:text-neutral-900 prose-strong:font-bold
+                prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50/50 prose-blockquote:pl-8 prose-blockquote:pr-6 prose-blockquote:py-6 prose-blockquote:my-12 prose-blockquote:rounded-r-lg prose-blockquote:italic prose-blockquote:text-neutral-800 prose-blockquote:text-xl prose-blockquote:leading-relaxed"
               dangerouslySetInnerHTML={{ __html: marked(study.content) }} 
             />
 
