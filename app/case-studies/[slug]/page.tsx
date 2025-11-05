@@ -182,12 +182,57 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </div>
       </section>
 
+      {/* Organization Info */}
+      <section className="py-12 border-b border-neutral-200">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-2xl p-8">
+              <div className="flex items-start gap-6">
+                <div className="flex-shrink-0">
+                  <div className="h-16 w-16 rounded-full bg-primary-600 flex items-center justify-center text-white text-2xl font-bold">
+                    {study.organization.charAt(0)}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-2">{study.organization}</h3>
+                  <p className="text-neutral-600 mb-4">
+                    A leading organization working in {study.sector.toLowerCase()} across {study.location}
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <div className="bg-white px-4 py-2 rounded-lg shadow-sm">
+                      <div className="text-sm text-neutral-500">Sector</div>
+                      <div className="font-semibold text-neutral-900">{study.sector}</div>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded-lg shadow-sm">
+                      <div className="text-sm text-neutral-500">Beneficiaries</div>
+                      <div className="font-semibold text-neutral-900">{study.beneficiaries}</div>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded-lg shadow-sm">
+                      <div className="text-sm text-neutral-500">Location</div>
+                      <div className="font-semibold text-neutral-900">{study.location}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Content */}
       <section className="py-16">
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <div 
-              className="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-2xl prose-h3:mt-6 prose-h3:mb-3 prose-p:text-neutral-700 prose-p:leading-relaxed prose-li:text-neutral-700 prose-strong:text-neutral-900"
+              className="prose prose-lg max-w-none 
+                prose-headings:font-bold prose-headings:text-neutral-900
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-neutral-200
+                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-primary-600
+                prose-p:text-neutral-700 prose-p:leading-relaxed prose-p:mb-6
+                prose-ul:my-6 prose-li:text-neutral-700 prose-li:my-2
+                prose-strong:text-neutral-900 prose-strong:font-semibold
+                prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:my-8
+                prose-blockquote:not-italic prose-blockquote:text-neutral-800"
               dangerouslySetInnerHTML={{ __html: marked(study.content) }} 
             />
 
