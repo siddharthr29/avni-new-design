@@ -195,19 +195,19 @@ export default function Footer() {
             {/* Digital Public Goods Badge */}
             <div className="flex flex-col items-center gap-2">
               <a
-                href="https://digitalpublicgoods.net/registry/avni.html"
+                href="https://www.digitalpublicgoods.net/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:opacity-80 transition-opacity"
+                className="hover:scale-105 transition-transform"
                 title="Avni is a Digital Public Good"
               >
                 <img
                   src="/images/digital-public-goods.svg"
                   alt="Digital Public Goods Alliance"
-                  className="h-16 w-auto"
+                  className="h-20 w-auto rounded-lg shadow-sm"
                 />
               </a>
-              <span className="text-xs text-neutral-500">Certified Digital Public Good</span>
+              <span className="text-xs text-neutral-400">Certified Digital Public Good</span>
             </div>
 
             {/* Status Page Link */}
