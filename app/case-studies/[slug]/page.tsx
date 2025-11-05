@@ -21,46 +21,46 @@ const caseStudiesData: Record<string, any> = {
     impact: '30% improvement in malnutrition tracking',
     date: '2025-05-28',
     content: `
-## The Challenge
+## Challenge
 
-The Azim Premji Foundation faced significant challenges in tracking nutritional outcomes for children across rural Odisha. Traditional paper-based systems created multiple barriers:
+The Azim Premji Foundation faced significant challenges in tracking nutritional outcomes for children across rural Odisha. Traditional paper-based systems led to:
 
-- Delayed data collection and reporting cycles
+- Delayed data collection and reporting
 - Inconsistent tracking across field workers
 - Difficulty in identifying at-risk children quickly
 - Limited visibility into program effectiveness
 
-## The Solution
+## Solution
 
-APF implemented Avni to digitize their entire nutrition tracking workflow, transforming their operations from paper to digital.
+APF implemented Avni to digitize their entire nutrition tracking workflow:
 
 ### Key Features Implemented
 
-1. **Custom Forms** - Designed specifically for nutritional assessments with skip logic and validations
-2. **Offline Capability** - Field workers could collect data without internet connectivity
-3. **Real-time Dashboards** - Program managers could monitor progress instantly
-4. **Automated Alerts** - System flagged at-risk children automatically for immediate action
+1. **Custom Forms**: Designed specifically for nutritional assessments
+2. **Offline Capability**: Field workers could collect data without internet
+3. **Real-time Dashboards**: Program managers could monitor progress instantly
+4. **Automated Alerts**: System flagged at-risk children automatically
 
-## Implementation Journey
+## Implementation
 
 The rollout was completed in 3 phases over 2 months:
 
-- **Phase 1** - Pilot with 10 field workers to test and refine the system
-- **Phase 2** - Training and expansion to 50 workers across multiple locations
-- **Phase 3** - Full deployment across all 200+ field workers
+- **Phase 1**: Pilot with 10 field workers
+- **Phase 2**: Training and expansion to 50 workers
+- **Phase 3**: Full deployment across all 200+ field workers
 
-## Measurable Results
+## Results
 
-After 6 months of using Avni, APF achieved remarkable outcomes:
+After 6 months of using Avni:
 
 - **30% improvement** in malnutrition tracking accuracy
 - **50% faster** identification of at-risk children
-- **100% digital** data collection across all field operations
-- **Real-time insights** for program managers enabling data-driven decisions
+- **100% digital** data collection
+- **Real-time insights** for program managers
 
-## What They Say
+## Testimonial
 
-> "Avni has transformed how we track and respond to malnutrition. The offline capability is crucial for our remote areas, and the dashboards give us insights we never had before. It's been a game-changer for our nutrition program."
+> "Avni has transformed how we track and respond to malnutrition. The offline capability is crucial for our remote areas, and the dashboards give us insights we never had before."
 > 
 > **Dr. Priya Sharma**, Program Lead, APF Odisha
     `,
@@ -228,25 +228,15 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <div 
-              className="prose prose-lg max-w-none 
+              className="prose prose-lg max-w-none
                 prose-headings:font-bold prose-headings:text-neutral-900
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-8 prose-h2:text-center prose-h2:relative
-                prose-h2:after:content-[''] prose-h2:after:block prose-h2:after:w-20 prose-h2:after:h-1 prose-h2:after:bg-gradient-to-r prose-h2:after:from-primary-500 prose-h2:after:to-secondary-500 prose-h2:after:mx-auto prose-h2:after:mt-4 prose-h2:after:rounded-full
-                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-primary-600 prose-h3:font-semibold prose-h3:flex prose-h3:items-center prose-h3:gap-2
-                prose-h3:before:content-['▸'] prose-h3:before:text-secondary-500
-                prose-p:text-neutral-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
-                prose-ul:my-6 prose-ul:space-y-3 prose-ul:bg-neutral-50 prose-ul:p-6 prose-ul:rounded-xl prose-ul:border prose-ul:border-neutral-200
-                prose-li:text-neutral-700 prose-li:pl-2 prose-li:relative
-                prose-li:before:content-['✓'] prose-li:before:absolute prose-li:before:-left-6 prose-li:before:text-green-500 prose-li:before:font-bold
-                prose-strong:text-neutral-900 prose-strong:font-bold prose-strong:bg-yellow-100 prose-strong:px-1 prose-strong:rounded
-                prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:bg-gradient-to-r prose-blockquote:from-primary-50 prose-blockquote:to-transparent prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-xl prose-blockquote:my-12 prose-blockquote:shadow-md
-                prose-blockquote:not-italic prose-blockquote:text-neutral-800 prose-blockquote:text-xl prose-blockquote:font-medium
-                [&_ol]:my-6 [&_ol]:space-y-4 [&_ol]:counter-reset-[item] [&_ol]:list-none
-                [&_ol>li]:relative [&_ol>li]:pl-12 [&_ol>li]:bg-white [&_ol>li]:p-4 [&_ol>li]:rounded-lg [&_ol>li]:shadow-sm [&_ol>li]:border [&_ol>li]:border-neutral-200
-                [&_ol>li:before]:absolute [&_ol>li:before]:left-4 [&_ol>li:before]:top-4 [&_ol>li:before]:flex [&_ol>li:before]:items-center [&_ol>li:before]:justify-center
-                [&_ol>li:before]:w-8 [&_ol>li:before]:h-8 [&_ol>li:before]:rounded-full [&_ol>li:before]:bg-gradient-to-br [&_ol>li:before]:from-primary-500 [&_ol>li:before]:to-secondary-500
-                [&_ol>li:before]:text-white [&_ol>li:before]:font-bold [&_ol>li:before]:text-sm
-                [&_ol>li:before]:content-[counter(item)] [&_ol>li:before]:counter-increment-[item]"
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-primary-600
+                prose-p:text-neutral-700 prose-p:leading-relaxed prose-p:mb-6
+                prose-ul:my-6 prose-li:text-neutral-700
+                prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
+                prose-strong:text-neutral-900 prose-strong:font-semibold
+                prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-neutral-700"
               dangerouslySetInnerHTML={{ __html: marked(study.content) }} 
             />
 
