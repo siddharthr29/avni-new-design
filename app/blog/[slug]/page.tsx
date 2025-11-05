@@ -6,6 +6,11 @@ import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import LaunchpadCTA from '@/components/LaunchpadCTA';
 import ShareButtons from '@/components/ShareButtons';
 import type { Metadata } from 'next';
+import { buildArticleMetadata, generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo';
+
+// Force static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -30,18 +35,15 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  return {
-    title: `${post.title} | Avni Blog`,
+  return buildArticleMetadata({
+    title: post.title,
     description: post.description || post.content.substring(0, 160),
-    openGraph: {
-      title: post.title,
-      description: post.description || post.content.substring(0, 160),
-      type: 'article',
-      publishedTime: post.date,
-      authors: [post.author],
-      images: post.featuredimage ? [post.featuredimage] : [],
-    },
-  };
+    slug: post.slug,
+    author: post.author,
+    publishedTime: post.date,
+    tags: post.tags,
+    image: post.featuredimage || undefined,
+  });
 }
 
 export async function generateStaticParams() {
@@ -64,8 +66,34 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const articleSchema = generateArticleSchema({
+    title: post.title,
+    description: post.description || post.content.substring(0, 160),
+    slug: post.slug,
+    author: post.author,
+    publishedTime: post.date,
+    tags: post.tags,
+    image: post.featuredimage || undefined,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: post.title, url: `/blog/${post.slug}` },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Article JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-primary-50 to-white py-16">
         <div className="container">
