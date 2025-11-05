@@ -73,9 +73,9 @@ export default function Navigation() {
                   onMouseEnter={() => handleMouseEnter(item.name)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <button className="flex items-center gap-1 text-neutral-700 hover:text-primary-500 transition-colors duration-200 font-medium">
+                  <button className="flex items-center gap-1 text-neutral-700 hover:text-primary-600 transition-all duration-200 font-medium group-hover:scale-105">
                     {item.name}
-                    <ChevronDown className="h-4 w-4" />
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openDropdown === item.name ? 'rotate-180' : ''}`} />
                   </button>
                   {openDropdown === item.name && (
                     <div 
@@ -89,7 +89,7 @@ export default function Navigation() {
                           href={subItem.href}
                           target={subItem.external ? '_blank' : undefined}
                           rel={subItem.external ? 'noopener noreferrer' : undefined}
-                          className="block px-4 py-2 text-neutral-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          className="block px-4 py-2 text-neutral-700 hover:bg-primary-50 hover:text-primary-600 transition-all hover:pl-5"
                         >
                           {subItem.name}
                         </Link>
@@ -101,7 +101,7 @@ export default function Navigation() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-neutral-700 hover:text-primary-500 transition-colors duration-200 font-medium"
+                  className="text-neutral-700 hover:text-primary-600 transition-all duration-200 font-medium hover:scale-105 inline-block"
                 >
                   {item.name}
                 </Link>

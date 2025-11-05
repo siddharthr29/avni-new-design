@@ -17,6 +17,7 @@ const footerLinks = {
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'Events', href: '/events' },
     { name: 'FAQs', href: '/faqs' },
+    { name: 'System Status', href: 'https://statuspage.freshping.io/69780-AvniStatus' },
     { name: 'Contact Us', href: '/contact' },
   ],
   company: [
@@ -169,8 +170,64 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Download App & Badges Section */}
+        <div className="border-t border-neutral-800 pt-8 pb-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            {/* Download App */}
+            <div className="flex flex-col items-center md:items-start gap-3">
+              <h4 className="text-sm font-semibold text-white">Download Avni App</h4>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.openchsclient"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-black hover:bg-neutral-800 px-4 py-2.5 rounded-lg transition-all hover:scale-105"
+              >
+                <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                </svg>
+                <div className="text-left">
+                  <div className="text-[10px] text-neutral-400 leading-none">GET IT ON</div>
+                  <div className="text-sm font-semibold text-white leading-tight">Google Play</div>
+                </div>
+              </a>
+            </div>
+
+            {/* Digital Public Goods Badge */}
+            <div className="flex flex-col items-center gap-2">
+              <a
+                href="https://digitalpublicgoods.net/registry/avni.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition-opacity"
+                title="Avni is a Digital Public Good"
+              >
+                <img
+                  src="/images/digital-public-goods.png"
+                  alt="Digital Public Goods Alliance"
+                  className="h-16 w-auto"
+                />
+              </a>
+              <span className="text-xs text-neutral-500">Certified Digital Public Good</span>
+            </div>
+
+            {/* Status Page Link */}
+            <div className="flex flex-col items-center md:items-end gap-2">
+              <a
+                href="https://statuspage.freshping.io/69780-AvniStatus"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/20 hover:bg-green-500/20 transition-colors group"
+              >
+                <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span className="text-sm font-medium text-green-400 group-hover:text-green-300">System Status</span>
+              </a>
+              <span className="text-xs text-neutral-500">All systems operational</span>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="border-t border-neutral-800 pt-8">
+        <div className="border-t border-neutral-800 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-sm text-neutral-500 text-center md:text-left">
               © {new Date().getFullYear()} Avni Project · Run by{' '}
@@ -184,7 +241,7 @@ export default function Footer() {
               </a>
               <br className="md:hidden" />
               <span className="hidden md:inline"> · </span>
-              Built with ❤️ in India · Open Source · DPG Certified
+              Built with ❤️ in India · Open Source
             </div>
             <div className="flex items-center space-x-4">
               <a
