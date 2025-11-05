@@ -1,10 +1,25 @@
 import { Metadata } from 'next';
 import { Linkedin, Mail } from 'lucide-react';
+import { buildPageMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Meet the Team | Avni Project',
-  description: 'Meet the passionate team behind Avni - building technology for social impact.',
-};
+// Force static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
+
+// Generate metadata
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    title: 'Meet the Team - Passionate Technologists Building Avni for Social Impact',
+    description: 'Meet the passionate team behind Avni - experienced technologists, designers, and social sector experts building the best data collection platform for NGOs.',
+    path: '/team',
+    keywords: [
+      'Avni team',
+      'NGO technology team',
+      'social impact technologists',
+      'nonprofit software developers',
+    ],
+  });
+}
 
 const teamMembers = [
   {
@@ -45,8 +60,18 @@ const teamMembers = [
 ];
 
 export default function TeamPage() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Team', url: '/team' },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24">
         <div className="container">

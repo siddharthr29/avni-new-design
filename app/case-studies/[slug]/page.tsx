@@ -4,6 +4,11 @@ import { ArrowLeft, MapPin, Users, TrendingUp, Calendar } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { marked } from 'marked';
 import ShareButtons from '@/components/ShareButtons';
+import { buildCaseStudyMetadata, generateCaseStudySchema, generateBreadcrumbSchema } from '@/lib/seo';
+
+// Force static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
 
 // This would typically come from a database or CMS
 const caseStudiesData: Record<string, any> = {
@@ -75,10 +80,20 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
     };
   }
 
-  return {
-    title: `${study.title} | Avni Case Study`,
-    description: study.impact,
-  };
+  return buildCaseStudyMetadata({
+    title: study.title,
+    description: `${study.impact}. See how ${study.organization} uses Avni for ${study.sector.toLowerCase()} in ${study.location}.`,
+    slug,
+    author: study.organization,
+    publishedTime: study.date,
+    image: undefined,
+  });
+}
+
+export async function generateStaticParams() {
+  return Object.keys(caseStudiesData).map((slug) => ({
+    slug,
+  }));
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
@@ -89,8 +104,33 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     notFound();
   }
 
+  const caseStudySchema = generateCaseStudySchema({
+    title: study.title,
+    description: study.impact,
+    slug,
+    author: study.organization,
+    publishedTime: study.date,
+    image: undefined,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Case Studies', url: '/case-studies' },
+    { name: study.title, url: `/case-studies/${slug}` },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+      {/* CreativeWork JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+      />
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Banner */}
       <section className="bg-gradient-to-br from-primary-600 to-secondary-600 text-white py-16 md:py-24">
         <div className="container">
