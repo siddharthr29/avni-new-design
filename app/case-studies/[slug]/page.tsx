@@ -2,71 +2,14 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Users, TrendingUp, Calendar } from 'lucide-react';
 import { notFound } from 'next/navigation';
-import { marked } from 'marked';
 import ShareButtons from '@/components/ShareButtons';
 import { buildCaseStudyMetadata, generateCaseStudySchema, generateBreadcrumbSchema } from '@/lib/seo';
+import CaseStudyTemplate from '../components/CaseStudyTemplate';
+import { getCaseStudy, getAllCaseStudySlugs } from '../data/case-studies-data';
 
 // Force static generation
 export const dynamic = 'force-static';
 export const revalidate = false;
-
-// This would typically come from a database or CMS
-const caseStudiesData: Record<string, any> = {
-  '2025-05-28-bridging-the-nutrition-gap-apf-odisha': {
-    title: 'Bridging the Nutrition Gap - APF Odisha',
-    organization: 'Azim Premji Foundation',
-    sector: 'Health & Nutrition',
-    location: 'Odisha, India',
-    beneficiaries: '50,000+',
-    impact: '30% improvement in malnutrition tracking',
-    date: '2025-05-28',
-    content: `
-## Challenge
-
-The Azim Premji Foundation faced significant challenges in tracking nutritional outcomes for children across rural Odisha. Traditional paper-based systems led to:
-
-- Delayed data collection and reporting
-- Inconsistent tracking across field workers
-- Difficulty in identifying at-risk children quickly
-- Limited visibility into program effectiveness
-
-## Solution
-
-APF implemented Avni to digitize their entire nutrition tracking workflow:
-
-### Key Features Implemented
-
-1. **Custom Forms**: Designed specifically for nutritional assessments
-2. **Offline Capability**: Field workers could collect data without internet
-3. **Real-time Dashboards**: Program managers could monitor progress instantly
-4. **Automated Alerts**: System flagged at-risk children automatically
-
-## Implementation
-
-The rollout was completed in 3 phases over 2 months:
-
-- **Phase 1**: Pilot with 10 field workers
-- **Phase 2**: Training and expansion to 50 workers
-- **Phase 3**: Full deployment across all 200+ field workers
-
-## Results
-
-After 6 months of using Avni:
-
-- **30% improvement** in malnutrition tracking accuracy
-- **50% faster** identification of at-risk children
-- **100% digital** data collection
-- **Real-time insights** for program managers
-
-## Testimonial
-
-> "Avni has transformed how we track and respond to malnutrition. The offline capability is crucial for our remote areas, and the dashboards give us insights we never had before."
-> 
-> **Dr. Priya Sharma**, Program Lead, APF Odisha
-    `,
-  },
-  // Add more case studies as needed
-};
 
 interface CaseStudyPageProps {
   params: Promise<{
@@ -76,7 +19,7 @@ interface CaseStudyPageProps {
 
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const study = caseStudiesData[slug];
+  const study = getCaseStudy(slug);
   
   if (!study) {
     return {
@@ -95,14 +38,19 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 }
 
 export async function generateStaticParams() {
-  return Object.keys(caseStudiesData).map((slug) => ({
+  return getAllCaseStudySlugs().map((slug) => ({
     slug,
   }));
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const study = caseStudiesData[slug];
+  
+  if (!slug) {
+    notFound();
+  }
+  
+  const study = getCaseStudy(slug);
 
   if (!study) {
     notFound();
@@ -135,6 +83,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      
       {/* Hero Banner */}
       <section className="bg-gradient-to-br from-primary-600 to-secondary-600 text-white py-16 md:py-24">
         <div className="container">
@@ -227,18 +176,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <section className="py-16">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <div 
-              className="prose prose-lg max-w-none
-                prose-headings:font-bold prose-headings:text-neutral-900
-                prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:text-left
-                prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-5 prose-h3:text-primary-600 prose-h3:font-semibold
-                prose-p:text-neutral-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
-                prose-ul:my-8 prose-ul:space-y-3 prose-li:text-neutral-700 prose-li:leading-relaxed
-                prose-ol:my-8 prose-ol:space-y-4 prose-ol:list-decimal prose-ol:pl-6
-                prose-strong:text-neutral-900 prose-strong:font-bold
-                prose-blockquote:border-l-4 prose-blockquote:border-primary-500 prose-blockquote:bg-primary-50/50 prose-blockquote:pl-8 prose-blockquote:pr-6 prose-blockquote:py-6 prose-blockquote:my-12 prose-blockquote:rounded-r-lg prose-blockquote:italic prose-blockquote:text-neutral-800 prose-blockquote:text-xl prose-blockquote:leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: marked(study.content) }} 
-            />
+            <CaseStudyTemplate data={study} />
 
             {/* Share Buttons */}
             <ShareButtons 
