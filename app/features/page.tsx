@@ -5,11 +5,30 @@ import {
   Clock, Zap, Globe, Database, FileText, Settings,
   CheckCircle, CheckCircle2, ArrowRight
 } from 'lucide-react';
+import { buildPageMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Features | Avni Platform Capabilities',
-  description: 'Explore Avni\'s powerful features: offline-first, AI-powered insights, customizable forms, automated workflows, and comprehensive reporting.',
-};
+// Force static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
+
+// Generate metadata
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    title: 'Features - Offline-First Mobile Data Collection | Avni',
+    description: 'Explore Avni\'s powerful features: offline-first architecture, AI-powered insights, customizable forms, automated workflows, real-time sync, and comprehensive reporting for NGOs.',
+    path: '/features',
+    keywords: [
+      'offline data collection features',
+      'mobile app features',
+      'NGO software capabilities',
+      'field data management features',
+      'AI-powered analytics',
+      'custom forms builder',
+      'automated workflows',
+      'real-time data sync',
+    ],
+  });
+}
 
 const features = [
   {
@@ -120,8 +139,18 @@ const useCases = [
 ];
 
 export default function FeaturesPage() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Features', url: '/features' },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24">
         <div className="container">

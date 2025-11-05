@@ -1,11 +1,28 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Check, ArrowRight, HelpCircle } from 'lucide-react';
+import { buildPageMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Pricing | Affordable Plans for Non-Profits',
-  description: 'Transparent, affordable pricing for NGOs. Up to 70% cheaper than alternatives. Free trial available.',
-};
+// Force static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
+
+// Generate metadata
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    title: 'Pricing - 100% Free Setup for NGOs | Avni Data Collection Platform',
+    description: 'Transparent, affordable pricing for NGOs. 100% free setup, pay only for what you use. Up to 70% cheaper than alternatives. Free trial available. No hidden costs.',
+    path: '/pricing',
+    keywords: [
+      'NGO software pricing',
+      'affordable data collection',
+      'nonprofit pricing plans',
+      'free setup for NGOs',
+      'pay as you go pricing',
+      'transparent pricing',
+    ],
+  });
+}
 
 const plans = [
   {
@@ -87,8 +104,18 @@ const faqs = [
 ];
 
 export default function PricingPage() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Pricing', url: '/pricing' },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24">
         <div className="container">

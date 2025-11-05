@@ -2,11 +2,29 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { FileText, Users, Stethoscope, Truck, CheckCircle, ArrowRight } from 'lucide-react';
 import AvniLogoSVG from '@/components/AvniLogoSVG';
+import { buildPageMetadata, generateBreadcrumbSchema } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Solutions | Avni Platform Use Cases',
-  description: 'Discover how Avni can transform your field operations across surveys, case management, medical camps, and field service management.',
-};
+// Force static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
+
+// Generate metadata
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    title: 'Solutions - Field Data Collection Use Cases for NGOs | Avni',
+    description: 'Discover how Avni transforms field operations: surveys & data collection, case management, medical camps, field service management, and beneficiary tracking for NGOs.',
+    path: '/solutions',
+    keywords: [
+      'NGO solutions',
+      'field data collection use cases',
+      'case management software',
+      'medical camp management',
+      'beneficiary tracking system',
+      'survey solutions for NGOs',
+      'field service management',
+    ],
+  });
+}
 
 const solutions = [
   {
@@ -72,8 +90,18 @@ const solutions = [
 ];
 
 export default function SolutionsPage() {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Solutions', url: '/solutions' },
+  ]);
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-primary-50 to-white py-16 md:py-24">
         <div className="container">
