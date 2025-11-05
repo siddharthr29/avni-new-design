@@ -202,7 +202,7 @@ export default function Footer() {
                 title="Avni is a Digital Public Good"
               >
                 <img
-                  src="/images/digital-public-goods.png"
+                  src="/images/digital-public-goods.svg"
                   alt="Digital Public Goods Alliance"
                   className="h-16 w-auto"
                 />

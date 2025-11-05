@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <!-- Background -->
+  <rect width="400" height="120" fill="transparent"/>
+  
+  <!-- Geometric Logo Shape (simplified version) -->
+  <g transform="translate(20, 20)">
+    <!-- Main hexagon shape in blue -->
+    <path d="M 30 10 L 50 0 L 70 10 L 70 30 L 50 40 L 30 30 Z" fill="#2E3192" opacity="0.9"/>
+    <path d="M 50 40 L 70 30 L 70 50 L 50 60 Z" fill="#00B8D4" opacity="0.8"/>
+    <path d="M 30 30 L 50 40 L 50 60 L 30 50 Z" fill="#2E3192" opacity="0.7"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="110" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#2E3192">
+    Digital Public Goods
+  </text>
+  <text x="110" y="75" font-family="Arial, sans-serif" font-size="20" font-weight="400" fill="#2E3192">
+    Alliance
+  </text>
+</svg>
