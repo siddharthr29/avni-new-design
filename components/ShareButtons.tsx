@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Share2, Twitter, Linkedin, Facebook, Link2, Check, MessageCircle } from 'lucide-react';
 
 interface ShareButtonsProps {
@@ -11,10 +11,16 @@ interface ShareButtonsProps {
 
 export default function ShareButtons({ title, url, description }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Add UTM parameters for tracking
   const getShareUrl = (platform: string) => {
-    const baseUrl = typeof window !== 'undefined' ? window.location.origin + url : url;
+    if (!mounted) return url;
+    const baseUrl = window.location.origin + url;
     return `${baseUrl}?utm_source=${platform}&utm_medium=social&utm_campaign=share`;
   };
 
@@ -26,8 +32,9 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
   };
 
   const copyToClipboard = async () => {
+    if (!mounted) return;
     try {
-      const fullUrl = typeof window !== 'undefined' ? window.location.origin + url : url;
+      const fullUrl = window.location.origin + url;
       const shareText = `${title}\n\n${fullUrl}?utm_source=copy&utm_medium=social&utm_campaign=share`;
       await navigator.clipboard.writeText(shareText);
       setCopied(true);
